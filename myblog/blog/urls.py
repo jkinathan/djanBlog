@@ -12,4 +12,7 @@ urlpatterns = [
     path("/post/delete/<int:post_id",views.PostDeleteView.as_view(),name="post_delete"),
     path("/post/draft/",views.DraftListView.as_view(),name="drafts"),
     path("/post/comment/<int:post_id",views.add_comment_to_post,name="add_comment_post"),
+    path("/post/comment/approve/<int:post_id",views.comment_approve,name="comment_approve"),
+    path("/post/comment/remove/<int:post_id",views.comment_remove,name="comment_remove"),
+    path("/post/comment/publish/<int:post_id",views.post_publish,name="comment_publish"),
 ]

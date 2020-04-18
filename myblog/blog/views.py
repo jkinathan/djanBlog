@@ -9,6 +9,13 @@ from django.urls import reverse_lazy
 
 # Create your views here.
 
+#function based view for publishing
+def post_publish(request,pk):
+    post = get_object_or_404(Post,pk=pk)
+    post.publish
+    return redirect('post_detail',pk=pk)
+
+#class based views
 class About(TemplateView):
     template_name = 'about.html'
 
@@ -50,6 +57,7 @@ class DraftListView(LoginRequiredMixin, ListView):
 
 #######################################################################
 #######################################################################
+#these are function based views
 @login_required
 def add_comment_to_post(request,pk):
     post = get_object_or_404(Post,pk = pk) #pass in the post model
@@ -69,3 +77,10 @@ def comment_approve(request,pk):
     comment = get_object_or_404(Comment,pk=pk)
     comment.approve()
     return redirect('post_detail',pk=comment.post.pk)
+
+@login_required
+def comment_remove(request,pk):
+    comment = get_object_or_404(Comment,pk=pk)
+    post_pk = comment.post.pk
+    comment.delete()
+    return redirect('post_detail',pk=post_pk)
