@@ -1,0 +1,26 @@
+{% extends blog/base.html %}
+
+{% block content %}
+<div class="jombotron">
+    <h2>Let's Start with Login</h2>
+    <h3>(Must be a super user Please check with the site admin)</h3>
+
+    {% if form.errors %}
+        <p>Your username and password didnt match! try again.</p>
+    {% endif %}
+
+    <form class="form-inline" method="POST" action="{% url 'login' %}">
+    {% csrf_token %}
+
+        {% form.as_p %}
+        <input type="button" value="Login" class="btn btn-secondary"/>
+        {% comment %} loginpage supplies the next value for us ...which tells us what to do next after this person has logged in{% endcomment %}
+        <input type="hidden" name="next" value="{{next}}"/>
+        {% comment %} <div class="form-group">
+            <label for=""></label>
+            <input type="text" name="" id="" class="form-control" placeholder="" aria-describedby="helpId">
+            <small id="helpId" class="text-muted">Help text</small>
+        </div> {% endcomment %}
+    </form>
+</div>
+{% endblock%}
