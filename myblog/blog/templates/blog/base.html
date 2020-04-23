@@ -1,16 +1,72 @@
 <!doctype html>
+{% load staticfiles %}
 <html lang="en">
   <head>
-    <title>Title</title>
+    <title>My Django Blog</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!--medium editor-->
+    <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+
+    <!--custom css-->
+    <link rel="stylesheet" href="{% static 'css/blog' %}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Russo+One" rel="stylesheet">
+
+
   </head>
   <body>
       
+      <!-- NavBar-->
+      <nav class="navbar navbar-default techfont custom-navbar">
+
+        <div class="container">
+          <ul class="nav navbar-nav">
+
+            <li><a class="navbar-brand bigbrand" href="{% url 'post_list' %}">My blog</a></li>
+            <li><a class="nav-link" href="{% url 'about' %}">About</a></li>
+            <li><a class="nav-link" href="https://www.github.com/kinathany">Github</a></li>
+
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+
+            {% if user.is_authenticated %}
+              <li><a class="nav-link" href="{% url 'post_new' %}">New Post</a></li>
+              <li><a class="nav-link" href="{% url 'post_draft_list' %}">Drafts</a></li>
+              <li><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+              <li>
+                  <a>
+                  Welcome : {{  user.username }}
+                  </a>
+              </li>
+            {% else %}
+              <li>
+                <a class="nav navbar-right" href="{% url 'login' %}">
+                  <span class="glyphicon glyphicon-user"></span>
+                </a>
+              <li>
+              
+            {% endif %}
+
+          </ul>
+        </div>
+        
+      </nav>
+
+      <!-- content block-->
+
+
+
+
+
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
