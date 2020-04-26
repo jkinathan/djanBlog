@@ -10,9 +10,10 @@ from django.urls import reverse_lazy
 # Create your views here.
 
 #function based view for publishing
+@login_required
 def post_publish(request,pk):
     post = get_object_or_404(Post,pk=pk)
-    post.publish
+    post.publish() #executing the pulbish method from the models
     return redirect('post_detail',pk=pk)
 
 #class based views
@@ -28,9 +29,11 @@ class PostListView(ListView):
         #__lte is lessthanOrEqualto
         
         
+
 class PostDetailView(DetailView):
     model = Post
-    
+
+
 class CreatePostView(LoginRequiredMixin, CreateView):
     template_name = 'blog/post_form.html'
     login_url = '/login/'
@@ -43,19 +46,22 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
     redirect_field_name = "blog/post_detail.html"
     form_class = PostForm
-    
+
+
 class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
     success_url = reverse_lazy('post_list')
-    
+
+
 class DraftListView(LoginRequiredMixin, ListView):
-    template_name = 'blog/post_draft_list.html'
+    
     model = Post
     login_url = '/login/'
+    
     redirect_field_name = "blog/post_list.html"
     
     def get_queryset(self):
-        return Post.object.filter(published_date__isnull=True).order_by('created_date')
+        return Post.objects.filter(published_date__isnull=True).order_by('create_date')
 
 #######################################################################
 #######################################################################
