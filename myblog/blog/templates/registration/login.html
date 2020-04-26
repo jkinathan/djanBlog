@@ -12,7 +12,7 @@
     <form class="form-inline" method="POST" action="{% url 'login' %}">
     {% csrf_token %}
 
-        {% form.as_p %}
+        {{ form.as_p }}
         <input type="button" value="Login" class="btn btn-secondary"/>
         {% comment %} loginpage supplies the next value for us ...which tells us what to do next after this person has logged in{% endcomment %}
         <input type="hidden" name="next" value="{{next}}"/>

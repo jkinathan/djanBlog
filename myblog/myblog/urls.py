@@ -19,7 +19,6 @@ from django.conf.urls import url
 from django.contrib.auth import views
 
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog', include('blog.urls')),
