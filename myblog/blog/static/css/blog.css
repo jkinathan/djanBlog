@@ -28,6 +28,10 @@
         font-size: 3em;
         text-align: center;
     }
+    .commenttile{
+        font-family: 'Russo One', sans-serif;
+        font-size: 1em;
+    }
     .postcontent{
         font-family: 'Montserrat';
         font-size: 1.5em;

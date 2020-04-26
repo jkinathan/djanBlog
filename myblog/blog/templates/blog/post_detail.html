@@ -40,7 +40,7 @@
                 </a>
             {% endif %}
                 <p>{{ comment.text|safe|linebreaks }}</p>
-                <p>Posted By: {{ comment.author }}</p>
+                <p>Posted By: <strong class="commenttile">{{ comment.author }}</strong></p>
         {% endif %}
         {% empty %}
             <p> No comments... </p>
