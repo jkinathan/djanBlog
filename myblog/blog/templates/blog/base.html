@@ -39,8 +39,8 @@
           <ul class="nav navbar-nav navbar-right">
 
             {% if user.is_authenticated %}
-              <li><a class="nav-link" href="{% url 'post_new' %}">New Post</a></li>
-              <li><a class="nav-link" href="{% url 'post_draft_list' %}">Drafts</a></li>
+              <li><a class="nav-link" href="{% url 'post_create' %}">New Post</a></li>
+              <li><a class="nav-link" href="{% url 'drafts' %}">Drafts</a></li>
               <li><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
               <li>
                   <a>
@@ -66,9 +66,9 @@
         <div class="row">
           <div class="col-md-8">
             <div class="blog_posts">
-              {% block content %}
+              {% block bodyblock %}
 
-              {% endblock content %}
+              {% endblock bodyblock %}
             </div>
           </div>
         </div>

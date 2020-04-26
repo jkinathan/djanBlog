@@ -1,7 +1,7 @@
-{% extends blog/base.html %}
+{% extends 'blog/base.html' %}
 
 {% block content %}
-<div class="jombotron">
+<div class="jumbotron">
     <h2>Let's Start with Login</h2>
     <h3>(Must be a super user Please check with the site admin)</h3>
 
@@ -13,7 +13,7 @@
     {% csrf_token %}
 
         {{ form.as_p }}
-        <input type="button" value="Login" class="btn btn-secondary"/>
+        <input type="submit" value="Login" class="btn btn-primary loader"/>
         {% comment %} loginpage supplies the next value for us ...which tells us what to do next after this person has logged in{% endcomment %}
         <input type="hidden" name="next" value="{{next}}"/>
         {% comment %} <div class="form-group">

@@ -31,7 +31,8 @@ class PostListView(ListView):
 class PostDetailView(DetailView):
     model = Post
     
-class PostCreateView(LoginRequiredMixin, CreateView):
+class CreatePostView(LoginRequiredMixin, CreateView):
+    template_name = 'blog/post_form.html'
     login_url = '/login/'
     redirect_field_name = "blog/post_detail.html"
     form_class = PostForm
@@ -48,6 +49,7 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('post_list')
     
 class DraftListView(LoginRequiredMixin, ListView):
+    template_name = 'blog/post_draft_list.html'
     model = Post
     login_url = '/login/'
     redirect_field_name = "blog/post_list.html"
