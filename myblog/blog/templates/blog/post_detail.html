@@ -25,7 +25,7 @@
 
 <hr>
 <a href="{% url 'add_comment_post' pk=post.pk %}" class="btn btn-primary btn-comment">Add Comment</a>
-
+<br><br>
 <div class="container">
     {% for comment in post.comments.all %}
         <br>
@@ -39,8 +39,24 @@
                     <span class="glyphicon glyphicon-remove"></span>
                 </a>
             {% endif %}
+
+</div>
+            <div class="row">
+            
+                <div class="panel panel-primary">
+                <div class="panel-heading">
+                Posted By: <strong class="commenttile">{{ comment.author }}</strong>
+                </div>
+                <div class="panel-body">
                 <p>{{ comment.text|safe|linebreaks }}</p>
-                <p>Posted By: <strong class="commenttile">{{ comment.author }}</strong></p>
+                </div><!-- /panel-body -->
+                </div><!-- /panel panel-default -->
+            </div><!-- /col-sm-5 -->
+            
+
+                
+                
+                {% comment %} <p>Posted By: <strong class="commenttile">{{ comment.author }}</strong></p> {% endcomment %}
         {% endif %}
         {% empty %}
             <p> No comments... </p>
